@@ -21,19 +21,37 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class myModel{
+  String name = "Pratheesh";
+  }
+
 class controller extends GetxController{
   //observables
   RxInt counter = 0.obs;
+  Rx<int> i = 1.obs;
+  Rx<myModel> mod = myModel().obs;
+
   void incrementCounter() {
+      
       counter++;
+      // update(['aVeryUniqueID']);
+      // if(counter.value == 5){
+      //   update(['aVeryUniqueID2']);
+      // }
   }
 }
 
 
 class HomePage extends StatelessWidget {
   String title = "Home Page";
-  HomePage({title=""});
+  HomePage({title=""}){
+    // c.counter.listen((value) {
+    //   print("value is " + value.toString());
+    // });
+  }
   controller c = Get.put(controller());
+
+
  
   @override
   Widget build(BuildContext context) {
@@ -51,13 +69,40 @@ class HomePage extends StatelessWidget {
             const Text(
               'You have pushed the button this many times:',
             ),
-            Obx(() =>  Text(
-              c.counter.toString(),
-              style: Theme.of(context).textTheme.headline4,
-            ),),
-            ElevatedButton(onPressed: (){
-              Get.to(Page2());
-            }, child: const Text("next page"))
+
+            // GetBuilder<controller>(
+            //    id: 'aVeryUniqueID', // optional
+            //     init: controller(),
+            //     builder: (value) => Text(
+            //       '${value.counter}', // this will update
+            //     ),
+            //   ),
+
+            // GetBuilder<controller>(
+            //    id: 'aVeryUniqueID2', // optional
+            //     init: controller(),
+            //     builder: (value) => Text(
+            //       '${value.counter}', // this will update
+            //     ),
+            //   ),
+
+
+            // Obx(() =>  Text(
+            //   c.counter.toString(),
+            //   style: Theme.of(context).textTheme.headline4,
+            // ),),
+
+            GetX<controller>(
+              builder: (control) {
+                return Text('${control.counter.value}');
+              },
+            ),
+
+
+
+            // ElevatedButton(onPressed: (){
+            //   Get.to(Page2());
+            // }, child: const Text("next page"))
           ],
         ),
       ),
