@@ -8,7 +8,7 @@ import 'package:getx_test/pages/page2/page2.view.dart';
 class HomePage extends StatelessWidget {
   String title = "Home Page";
   HomePage({title=""});
-  MainController c = Get.put(MainController());
+  MainController c = Get.find<MainController>();
  
   @override
   Widget build(BuildContext context) {

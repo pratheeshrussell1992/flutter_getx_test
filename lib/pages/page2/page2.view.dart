@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_test/controllers/main.controller.dart';
 
-class Page2 extends StatelessWidget {
-  MainController c = Get.find();
- 
+class Page2 extends GetView<MainController> {
   @override
   Widget build(BuildContext context) {
     
@@ -22,7 +20,7 @@ class Page2 extends StatelessWidget {
               'You have pushed the button this many times:',
             ),
              Text(
-              c.counter.toString(),
+              controller.counter.toString(),
               style: Theme.of(context).textTheme.headline4,
             ),
             ElevatedButton(onPressed: (){
